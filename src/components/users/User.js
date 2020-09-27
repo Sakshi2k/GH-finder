@@ -7,7 +7,7 @@ function User(props) {
   useEffect(() => {
     props.getUser(props.match.params.login);
     props.getUserRepos(props.match.params.login);
-  }, []);
+  });
 
   const {
     html_url,
@@ -33,7 +33,7 @@ function User(props) {
           <div className='text-center my-2'>
             <img
               src={avatar_url}
-              alt='Picture'
+              alt='user'
               className='round-img'
               style={{ width: "200px" }}
             />
