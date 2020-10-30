@@ -3,11 +3,11 @@ import propTypes from "prop-types";
 import Spinner from "./Spinner";
 import Repos from "../repos/Repos";
 
-function User(props) {
+const User = (props) => {
   useEffect(() => {
     props.getUser(props.match.params.login);
     props.getUserRepos(props.match.params.login);
-  });
+  }, []);
 
   const {
     html_url,
@@ -49,12 +49,12 @@ function User(props) {
           </div>
 
           <div className='grid-2'>
-            <div>
+            <div >
               <p>Company : {company}</p>
               <p>Location : {location}</p>
               <p>{(hireable && `Hireable`) || `Not Hireable`}</p>
             </div>
-            <div>
+            <div >
               <p>Followers : {followers}</p>
               <p>Following : {following}</p>
               <p>Public Repos : {public_repos}</p>
@@ -63,12 +63,12 @@ function User(props) {
           </div>
 
           <div>
-            <h4>BLOGS</h4>
+            <h4>Repositories</h4>
             <Repos repos={props.repos} />
             <center>
               <a
                 href={html_url + "?tab=repositories"}
-                className='btn btn-light'
+                className='btn btn-light btn-sm'
               >
                 VIEW ALL
               </a>

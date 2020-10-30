@@ -16,7 +16,7 @@ const Search = (props) => {
   const submitUserName = (event) => {
     event.preventDefault();
     if (userName === "") {
-      props.setAlert("Please Enter Name To Search..!", "light");
+      props.setAlert("Please Enter UserName To Search..!", "light");
     }
     userName !== "" && props.searchUsers(userName);
   };
@@ -26,7 +26,7 @@ const Search = (props) => {
       <input
         type='text'
         name='username'
-        placeholder='Search Name'
+        placeholder='Enter Username'
         value={userName}
         autoComplete='off'
         onChange={changeUserName}
