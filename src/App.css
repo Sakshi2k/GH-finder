@@ -2,7 +2,9 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #dc3545;
+  /* --primary-color-red: #dc3545;        */
+  /* --primary-color-cyan: rgb(24, 183, 204); */
+  --primary-color-green: rgb(10, 141, 91);
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -24,7 +26,7 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--primary-color-green);
   text-decoration: none;
 }
 
@@ -42,7 +44,7 @@ img {
 
 /* Utilities */
 .container {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
@@ -71,7 +73,7 @@ img {
 }
 
 .text-primary {
-  color: var(--primary-color);
+  color: var(--primary-color-green);
 }
 
 .text-dark {
@@ -226,6 +228,11 @@ img {
   margin-right: 0.2rem;
 }
 
+.btn-back {
+  margin: 0.5rem 0px;
+  box-shadow: 1rem solid black;
+}
+
 .badge {
   display: inline-block;
   font-size: 0.8rem;
@@ -238,18 +245,20 @@ img {
 }
 
 .alert {
+  margin-top: 4rem;
+  margin-bottom: -2rem;
   padding: 0.7rem;
-  margin: 1rem 0;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
+  border: 0.1px solid rgb(163, 159, 159);
 }
 
 .btn-primary,
 .bg-primary,
 .badge-primary,
 .alert-primary {
-  background: var(--primary-color);
+  background: var(--primary-color-green);
   color: #fff;
 }
 
@@ -309,7 +318,7 @@ img {
 
 /* Forms */
 input {
-  margin: 1.2rem 0;
+  margin: 1rem 0;
 }
 
 .form-text {
@@ -333,7 +342,7 @@ textarea {
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
+  border: 0.1px solid #ccc;
 }
 
 input[type="submit"],
@@ -354,14 +363,13 @@ table th {
 /* Navbar */
 .navbar {
   display: flex;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-green);
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem 2rem;
-  z-index: 1;
+  padding: 0.2rem 1rem;
   width: 100%;
-  opacity: 0.9;
-  margin-bottom: 1rem;
+  font-size: large;
+  position: fixed;
 }
 
 .navbar ul {
@@ -375,7 +383,8 @@ table th {
 }
 
 .navbar a:hover {
-  color: var(--light-color);
+  color:#333;
+  font-weight: 700;
 }
 
 .navbar .welcome span {
@@ -407,20 +416,68 @@ table th {
     font-size: 1rem;
   }
 
-  /* Navbar */
-  .navbar {
-    display: block;
-    text-align: center;
-  }
-
-  .navbar ul {
-    text-align: center;
-    justify-content: center;
-  }
 }
 
 /* Personal stylings */
 .userAvatar {
   width: 80px;
   height: 80px;
+}
+
+.footer {
+  background-color: #343a40!important;
+  flex-flow: row nowrap;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: .5rem 1rem;
+  text-align: center;
+}
+
+ /* Image Css */
+.logo {
+  width: 2rem;
+}
+
+.tick, .cross {
+  width: 1.7rem;
+  background-color: white;
+}
+
+.card {
+  margin: 0rem;
+  padding: 0.4rem;
+}
+
+/* Tooltip text */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 2px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.mg-top-2 {
+  margin-top: 2rem;
+}
+.mg-top-4 {
+  margin-top: 4rem;
 }

@@ -1,55 +1,46 @@
-import React, { useState } from "react";
-import propTypes from "prop-types";
+import React, { useState, useContext } from "react";
+import GithubContext from '../../context/github/githubContext';
 
-const Search = (props) => {
-  const [userName, setuserName] = useState("");
+const Search = ({ setAlert }) => {
+  const githubContext = useContext(GithubContext)
+
+  const [userName, setUserName] = useState("");
 
   const changeUserName = (event) => {
-    setuserName(event.target.value);
-  };
-
-  const HandleClear = () => {
-    setuserName("");
-    props.clearAll();
+    setUserName(event.target.value);
   };
 
   const submitUserName = (event) => {
     event.preventDefault();
     if (userName === "") {
-      props.setAlert("Please Enter UserName To Search..!", "light");
+      setAlert("Please Enter Username To Search..!", "light");
     }
-    userName !== "" && props.searchUsers(userName);
+    userName !== "" && githubContext.searchUsers(userName);
   };
 
   return (
-    <form action='' onSubmit={submitUserName} className='btn-sm'>
+    <form onSubmit={submitUserName} className='btn-sm mg-top-2'>
       <input
         type='text'
         name='username'
         placeholder='Enter Username'
         value={userName}
         autoComplete='off'
+        className='form-control'
         onChange={changeUserName}
       />
-      <button type='submit' className='btn btn-dark btn-sm'>
-        Search
-      </button>
+      <button type='submit' className='btn btn-dark btn-sm'>Search</button>
       <button
         type='button'
         className='btn btn-light btn-sm'
         onClick={() => {
-          HandleClear();
+          githubContext.clearUsers();
+          setUserName('');
         }}
-      >
-        Clear
-      </button>
-      {userName && <h3>Search Results for UserName : {userName}</h3>}
+      > Clear </button>
+      {userName && <h3>Search results for : {userName}</h3>}
     </form>
   );
-};
-
-Search.propTypes = {
-  searchUsers: propTypes.func.isRequired,
 };
 
 export default Search;

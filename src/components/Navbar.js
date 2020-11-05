@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Search from "./Search";
+
+import logo from './imgs/githubIcon.png';
 
 const Navbar = () => (
   <nav className='navbar'>
+    <div className='tooltip'>
+      <img src={logo} alt="github" className='logo' />
+      <span className="tooltiptext">Not an official website by Github</span>
+    </div>
     <p className='bold'>GITHUB FINDER</p>
-    {/* <Search /> */}
     <ul>
       <li>
         <Link to='/'>Home</Link>

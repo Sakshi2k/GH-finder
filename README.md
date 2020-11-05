@@ -1,9 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn start` or `npm start`
 
-Runs the app in the development mode on [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs the app in the development mode on [http://localhost:3000] to view it in the browser.
+
+#### Built with ReactJS using Context API.
+
+### Deployed on Netflify
+###### https://githubusersfinder01.netlify.app

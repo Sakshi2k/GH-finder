@@ -1,12 +1,18 @@
-import React, { Fragment, useEffect } from "react";
-import propTypes from "prop-types";
+import React, { useEffect, useContext } from "react";
+import { Link } from 'react-router-dom';
 import Spinner from "./Spinner";
 import Repos from "../repos/Repos";
+import GithubContext from '../../context/github/githubContext';
+import tick from '../imgs/tick.jpg';
+import cross from '../imgs/cross.jpg';
 
 const User = (props) => {
+  const githubContext = useContext(GithubContext);
+  const { repos, loading, getUser, getUserRepos } = githubContext;
+
   useEffect(() => {
-    props.getUser(props.match.params.login);
-    props.getUserRepos(props.match.params.login);
+    getUser(props.match.params.login);
+    getUserRepos(props.match.params.login);
   }, []);
 
   const {
@@ -23,12 +29,13 @@ const User = (props) => {
     public_gists,
     followers,
     following,
-  } = props.user;
+  } = githubContext.user;
 
   return (
-    <Fragment>
-      {props.loading && <Spinner />}
-      {!props.loading && (
+    <div className='m-3'>
+      <Link to='/' className='btn btn-sm btn-back btn-light'>Back to Search</Link>
+      {loading && <Spinner />}
+      {!loading && (
         <div className='card'>
           <div className='text-center my-2'>
             <img
@@ -44,15 +51,16 @@ const User = (props) => {
             </p>
             <p>{bio}</p>
             <a href={html_url} className='btn btn-dark btn-sm'>
-              View Profile
+              Github Profile
             </a>
           </div>
 
           <div className='grid-2'>
             <div >
-              <p>Company : {company}</p>
-              <p>Location : {location}</p>
-              <p>{(hireable && `Hireable`) || `Not Hireable`}</p>
+              <p>Company : {company || 'NA'}</p>
+              <p>Location : {location || 'NA'}</p>
+              <p> {(hireable && `Hireable`) || `Not Hireable X`}&nbsp;&nbsp;
+                {(hireable && <img src={tick} alt='tick' className='tick' />) || (<img src={cross} alt='cross' className='cross' />)} </p>
             </div>
             <div >
               <p>Followers : {followers}</p>
@@ -64,25 +72,15 @@ const User = (props) => {
 
           <div>
             <h4>Repositories</h4>
-            <Repos repos={props.repos} />
+            <Repos repos={repos} />
             <center>
-              <a
-                href={html_url + "?tab=repositories"}
-                className='btn btn-light btn-sm'
-              >
-                VIEW ALL
-              </a>
+              <a href={html_url + "?tab=repositories"} className='btn btn-dark btn-sm'>VIEW ALL</a>
             </center>
           </div>
         </div>
       )}
-    </Fragment>
+    </div>
   );
 }
-
-User.propTypes = {
-  user: propTypes.object.isRequired,
-  loading: propTypes.bool,
-};
 
 export default User;

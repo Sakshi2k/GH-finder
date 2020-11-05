@@ -1,49 +1,19 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Users from "./components/users/Users";
-import User from "./components/users/User";
-import Search from "./components/users/Search";
-import Alert from "./components/Alert";
-import About from "./components/pages/About";
 import GithubState from './context/github/githubState';
-import axios from "axios";
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
+import NotFound from "./components/pages/NotFound";
+
+import Navbar from "./components/Navbar";
+import Alert from "./components/Alert";
+import User from "./components/users/User";
+import Footer from "./components/Footer";
 import "./App.css";
 
 class App extends Component {
   state = {
-    users: [],
-    user: {},
-    repos: [],
-    loading: false,
     alert: null,
-  };
-
-  // Searches for users with name
-  searchUsers = async (nameText) => {
-    this.setState({ loading: true });
-    const res = await axios.get(
-      `https://api.github.com/search/users?q=${nameText}&client_id=${process.env.REACT_APP_GH_CLIENT_ID}&client_secret=${process.env.REACT_APP_GH_CLIENT_SECRET}`
-    );
-    this.setState({ loading: false, users: res.data.items });
-  };
-
-  // Search for a single user with name
-  getUser = async (userName) => {
-    this.setState({ loading: true });
-    const res = await axios.get(
-      `https://api.github.com/users/${userName}?client_id=${process.env.REACT_APP_GH_CLIENT_ID}&client_secret=${process.env.REACT_APP_GH_CLIENT_SECRET}`
-    );
-    this.setState({ loading: false, user: res.data });
-  };
-
-  // Get user Repos
-  getUserRepos = async (userName) => {
-    this.setState({ loading: true });
-    const res = await axios.get(
-      `https://api.github.com/users/${userName}/repos?per_page=9&sort=full_name&direction=desc&client_id=${process.env.REACT_APP_GH_CLIENT_ID}&client_secret=${process.env.REACT_APP_GH_CLIENT_SECRET}`
-    );
-    this.setState({ loading: false, repos: res.data });
   };
 
   // Set alert
@@ -52,62 +22,28 @@ class App extends Component {
     setTimeout(() => this.setState({ alert: null }), 1300);
   };
 
-  // Clear Everything
-  clearAll = () => {
-    this.setState({ users: [] });
-  };
-
   render() {
     return (
       <GithubState >
         <Router>
+          <Navbar />
           <div className='App'>
-            <Navbar />
             <div className='container'>
               <Alert alert={this.state.alert} />
               <Switch>
-                <Route
-                  exact
-                  path='/'
-                  render={(props) => (
-                    <Fragment>
-                      <Search
-                        searchUsers={this.searchUsers}
-                        getUser={this.getUser}
-                        setAlert={this.setAlert}
-                        clearAll={this.clearAll}
-                      />
-                      <Users
-                        users={this.state.users}
-                        loading={this.state.loading}
-                      />
-                    </Fragment>
-                  )}
-                ></Route>
-                <Route exact path='/about'>
-                  <About />
-                </Route>
-                <Route
-                  exact
-                  path='/user/:login'
-                  render={(props) => (
-                    <User
-                      {...props}
-                      getUser={this.getUser}
-                      user={this.state.user}
-                      loading={this.state.loading}
-                      repos={this.state.repos}
-                      getUserRepos={this.getUserRepos}
-                    />
-                  )}
-                ></Route>
+                <Route exact path='/'><Home setAlert={this.setAlert} /></Route>
+                <Route exact path='/about' component={About} />
+                <Route exact path='/user/:login' component={User} />
+                <Route path='/' component={NotFound} />
               </Switch>
             </div>
           </div>
+          <Footer />
         </Router>
-      </GithubState>
+      </GithubState >
     );
   }
 }
 
 export default App;
+
