@@ -56,6 +56,7 @@ const GithubState = (props) => {
       type: GET_USER,
       payload: res.data
     })
+    console.log(initialState.user);
 
   };
 

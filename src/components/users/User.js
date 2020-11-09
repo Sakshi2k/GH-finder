@@ -32,54 +32,58 @@ const User = (props) => {
   } = githubContext.user;
 
   return (
-    <div className='m-3'>
-      <Link to='/' className='btn btn-sm btn-back btn-light'>Back to Search</Link>
-      {loading && <Spinner />}
-      {!loading && (
-        <div className='card'>
-          <div className='text-center my-2'>
-            <img
-              src={avatar_url}
-              alt='user'
-              className='round-img'
-              style={{ width: "200px" }}
-            />
-            <br />
-            <h4>{name && name.toUpperCase()}</h4>
-            <p>
-              | {email && `${email} |`} {blog} |
+    <div className=''>
+      <br />
+      <Link to='/' className='btn btn-back btn-light'>Back to Search</Link>
+      <br /><br />
+      { loading && <Spinner />}
+      {
+        !loading && (
+          <div className='card'>
+            <div className='text-center my-2'>
+              <img
+                src={avatar_url}
+                alt='user'
+                className='round-img'
+                style={{ width: "200px" }}
+              />
+              <br />
+              <h4>{name && name.toUpperCase()}</h4>
+              <p>
+                | {email && `${email} |`} {blog} |
             </p>
-            <p>{bio}</p>
-            <a href={html_url} className='btn btn-dark btn-sm'>
-              Github Profile
+              <p>{bio}</p>
+              <a href={html_url} className='btn btn-dark btn-sm'>
+                Github Profile
             </a>
-          </div>
+            </div>
 
-          <div className='grid-2'>
-            <div >
-              <p>Company : {company || 'NA'}</p>
-              <p>Location : {location || 'NA'}</p>
-              <p> {(hireable && `Hireable`) || `Not Hireable X`}&nbsp;&nbsp;
+            <div className='grid-2'>
+              <div>
+                <p>Company : {company || 'NA'}</p>
+                <p>Location : {location || 'NA'}</p>
+                <p> {(hireable && `Hireable`) || `Not Hireable `}&nbsp;&nbsp;
                 {(hireable && <img src={tick} alt='tick' className='tick' />) || (<img src={cross} alt='cross' className='cross' />)} </p>
+              </div>
+              <div>
+                <p>Followers : {followers}</p>
+                <p>Following : {following}</p>
+                <p>Public Repos : {public_repos}</p>
+                <p>Public Gists : {public_gists}</p>
+              </div>
             </div>
-            <div >
-              <p>Followers : {followers}</p>
-              <p>Following : {following}</p>
-              <p>Public Repos : {public_repos}</p>
-              <p>Public Gists : {public_gists}</p>
-            </div>
-          </div>
 
-          <div>
-            <h4>Repositories</h4>
-            <Repos repos={repos} />
-            <center>
-              <a href={html_url + "?tab=repositories"} className='btn btn-dark btn-sm'>VIEW ALL</a>
-            </center>
+            <div>
+              <h4>Repositories</h4>
+              <Repos repos={repos} />
+              <center>
+                <a href={html_url + "?tab=repositories"} className='btn btn-sm'>VIEW MORE</a>
+              </center>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )
+      }
+    </div >
   );
 }
 

@@ -4,7 +4,7 @@ import spinner from "./spinner.gif";
 export default function Spinner() {
   return (
     <Fragment>
-      <h2 className='all-center'>Loading...</h2>
+      <h2 className='text-center my-2'>Loading...</h2>
       <img
         src={spinner}
         alt='Spinner'

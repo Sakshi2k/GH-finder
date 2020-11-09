@@ -2,10 +2,10 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className='footer'>
+        <footer className='footer'>
             Made by
-            <a href='https://meet-sakshichoudhary.herokuapp.com/'> Sakshi</a>
-        </div>
+            <a href='https://meet-sakshichoudhary.herokuapp.com/'> Sakshi Choudhary</a>
+        </footer>
     )
 }
 

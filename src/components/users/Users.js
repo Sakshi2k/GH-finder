@@ -12,22 +12,17 @@ const Users = () => {
     } else {
         return (
             <div>
-                <div style={userStyle}>
+                <div className='grid-4'>
                     {users.map((user) => (
                         <UserItem key={user.id} user={user} />
                     ))}
                 </div>
+                <br />
                 {users.length > 0 && <p className='text-center'>You are able to view 30 users currently.</p>}
                 <br /><br />
             </div>
         );
     }
-};
-
-const userStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gridGap: "0.8rem",
 };
 
 export default Users;

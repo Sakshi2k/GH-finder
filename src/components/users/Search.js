@@ -1,14 +1,23 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from 'react-router-dom';
+import { Form, FormControl, Button } from 'react-bootstrap';
 import GithubContext from '../../context/github/githubContext';
 
 const Search = ({ setAlert }) => {
   const githubContext = useContext(GithubContext)
 
   const [userName, setUserName] = useState("");
+  const history = useHistory();
 
   const changeUserName = (event) => {
     setUserName(event.target.value);
   };
+
+
+  const routeChange = () => {
+    let path = `/`;
+    history.push(path);
+  }
 
   const submitUserName = (event) => {
     event.preventDefault();
@@ -16,30 +25,30 @@ const Search = ({ setAlert }) => {
       setAlert("Please Enter Username To Search..!", "light");
     }
     userName !== "" && githubContext.searchUsers(userName);
-  };
+  }
 
   return (
-    <form onSubmit={submitUserName} className='btn-sm mg-top-2'>
-      <input
-        type='text'
+    <Form inline onSubmit={submitUserName} >
+      <FormControl type='text'
         name='username'
         placeholder='Enter Username'
         value={userName}
         autoComplete='off'
         className='form-control'
-        onChange={changeUserName}
-      />
-      <button type='submit' className='btn btn-dark btn-sm'>Search</button>
-      <button
+        onClick={routeChange}
+        onChange={changeUserName} />
+      <Button type="submit" className='btn searchBtn'
+      > Submit</Button>
+      <Button
         type='button'
-        className='btn btn-light btn-sm'
+        className='btn btn-light'
         onClick={() => {
           githubContext.clearUsers();
           setUserName('');
         }}
-      > Clear </button>
-      {userName && <h3>Search results for : {userName}</h3>}
-    </form>
+      > Clear </Button>
+      <br /><br />
+    </Form >
   );
 };
 
