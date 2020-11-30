@@ -19,7 +19,7 @@ function Repos({ repos }) {
 
 
 const tempStyle = {
-  'margin-left': '2pt'
+  'marginLeft': '2pt'
 }
 
 export default Repos;
