@@ -13,7 +13,7 @@ const User = (props) => {
   useEffect(() => {
     getUser(props.match.params.login);
     getUserRepos(props.match.params.login);
-  }, []);
+  }, [loading]);
 
   const {
     html_url,
