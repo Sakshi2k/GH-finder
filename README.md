@@ -9,4 +9,4 @@ Runs the app in the development mode on [http://localhost:3000] to view it in th
 #### Built with ReactJS using Context API.
 
 ### Deployed on Netflify
-###### https://githubusersfinder01.netlify.app
+###### https://githubusersfinder01.netlify.app     -  under development
