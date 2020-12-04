@@ -8,7 +8,8 @@ function About() {
       <br />
       <div style={{ marginLeft: '2rem' }}>
         <h6 className='lead' style={{ color: 'rgb(10, 141, 91)' }}>Welcome to Github Finder</h6>
-        <p className='lead'>This application helps you search Developers all over the world from Github Platform using their username/name.</p>
+        <p className='lead'>This application helps you search Developers all over the world from Github Platform using their username.</p>
+        <p className='lead'>You can also use their name to do the same, although username will help you search faster.</p>
         <p>You can also view their summarised data.</p>
         <p className='lead'>Version: 1.0</p>
         <p className='lead'>Made by<a rel="noopener noreferrer" target='_blank' href='https://meet-sakshichoudhary.herokuapp.com/'> Sakshi Choudhary</a></p>
